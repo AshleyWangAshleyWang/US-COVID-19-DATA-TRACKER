@@ -84,7 +84,7 @@ state_name_dict={
 }
 
 # data for graph 1
-state_ju = pd.read_csv('C:\\Users\\asus\\Downloads\\COVID-19_Vaccinations_in_the_United_States_Jurisdiction.csv')
+state_ju = pd.read_csv('...COVID-19_Vaccinations_in_the_United_States_Jurisdiction.csv')
 state_ju.Date=pd.to_datetime(state_ju.Date)
 ## delete locations that are not state names: BR2, DD2,IH2, VA2
 state_ju = state_ju.loc[-state_ju['Location'].isin(['BR2', 'DD2', 'IH2', 'VA2'])]
@@ -94,7 +94,7 @@ state_ju['ful_state_name'] = state_ju['Location'].map(state_name_dict)
 # data for graph 2
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
-state_county_vacc = pd.read_csv('C:\\Users\\asus\\Downloads\\COVID-19_Vaccinations_in_the_United_States_County.csv', na_values={'FIPS':'UNK'})
+state_county_vacc = pd.read_csv('...COVID-19_Vaccinations_in_the_United_States_County.csv', na_values={'FIPS':'UNK'})
 state_county_vacc.Date = pd.to_datetime(state_county_vacc.Date)
 state_county_vacc.dropna(subset=['FIPS'], inplace=True)
 state_county_vacc = create_date_int(state_county_vacc,'Date')
@@ -103,7 +103,7 @@ sub_state_county_vacc = state_county_vacc[['FIPS','Recip_State','Series_Complete
 
 
 # data for graph 3 & 4
-state_county=pd.read_csv('C:\\Users\\asus\\Downloads\\United_States_COVID-19_County_Level_of_Community_Transmission_as_Originally_Posted.csv',na_values = ['suppressed'])
+state_county=pd.read_csv('...United_States_COVID-19_County_Level_of_Community_Transmission_as_Originally_Posted.csv',na_values = ['suppressed'])
 state_county.dropna(inplace=True)
 state_county.report_date=pd.to_datetime(state_county.report_date)
 state_county['new_cases_num'] = state_county.cases_per_100K_7_day_count_change.str.replace(',','').astype('float')
